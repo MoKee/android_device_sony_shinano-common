@@ -63,11 +63,16 @@ on init
     chown bluetooth net_bt_stack /proc/bluetooth/wakeup/proto
     chmod 0664 /proc/bluetooth/wakeup/proto
 
+    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+
     # Enable ramdumps from subsystems to dump
-    # Should be initialized during init
-    write /sys/bus/msm_subsys/devices/subsys0/restart_level "RELATED"
+    # adsp ssr
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level "SYSTEM"
+    # modem ssr
     write /sys/bus/msm_subsys/devices/subsys1/restart_level "RELATED"
+    # wcnss ssr
     write /sys/bus/msm_subsys/devices/subsys2/restart_level "RELATED"
+    # venus ssr
     write /sys/bus/msm_subsys/devices/subsys3/restart_level "RELATED"
 
     # Enable panic on out of memory
@@ -155,6 +160,10 @@ on boot
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
+    # MDP idle notifier
+    chown system graphics /sys/class/graphics/fb0/idle_time
+    chmod 0664 /sys/class/graphics/fb0/idle_time
+
     # Remove write permissions to video related nodes
     chown system graphics /sys/class/graphics/fb1/hpd
     chown system system /sys/class/graphics/fb1/hdcp/tp
@@ -184,6 +193,18 @@ on boot
 
     # For bridgemgr daemon to inform the USB driver of the correct transport
     chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
+
+    # For setting tcp delayed ack
+    chown system system /sys/kernel/ipv4/tcp_delack_seg
+    chown system system /sys/kernel/ipv4/tcp_use_userconfig
+
+    # Define TCP delayed ack settings for WiFi & LTE
+    setprop net.tcp.delack.default     1
+    setprop net.tcp.delack.wifi        20
+    setprop net.tcp.delack.lte         8
+    setprop net.tcp.usercfg.default    0
+    setprop net.tcp.usercfg.wifi       1
+    setprop net.tcp.usercfg.lte        1
 
     chmod 660 /dev/rtc0
     chown system system /dev/rtc0
@@ -239,7 +260,7 @@ on post-fs
     insmod /system/lib/modules/mhl_sii8620_8061_drv.ko
 
     exec /system/bin/chargemon
-    write /sys/class/power_supply/battery/enable_stop_charging_at_low_battery 1
+    write /sys/class/power_supply/battery/enable_shutdown_at_low_battery 1
 
     # Change to socket location on libkeyctrl/suntory for /data encryption
     mkdir /dev/socket/suntory 0755 system system
@@ -263,7 +284,7 @@ on post-fs-data
     mkdir /data/tombstones 0755 system system
     mkdir /data/tombstones/vendor 0755 system system
     mkdir /data/pc 0700 radio radio
-    mkdir /data/persist 0770 system system
+    mkdir /data/persist 0770 persist_rw persist_rw
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
@@ -606,7 +627,7 @@ on property:init.svc.surfaceflinger=running
 on property:init.svc.surfaceflinger=stopped
     stop ppd
 
-property:service.bootanim.exit=1
+on property:service.bootanim.exit=1
     # Enable Power modes
     write /sys/module/lpm_levels/enable_low_power/l2 4
     write /sys/module/msm_pm/modes/cpu0/power_collapse/suspend_enabled 1
@@ -669,6 +690,7 @@ on property:init.svc.bootanim=stopped
     write /dev/cpuctl/apps/cpu.notify_on_migrate 0
 
     write /sys/block/mmcblk0/queue/scheduler row
+    setprop ro.qualcomm.perf.cores_online 2
     start mpdecision
 
 on property:init.svc.bootanim=running
