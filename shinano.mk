@@ -64,12 +64,23 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.primary.msm8974 \
+    audiod \
     audio.a2dp.default \
-    audio.usb.default \
+    audio.primary.msm8974 \
     audio.r_submix.default \
+    audio.usb.default \
+    audio_policy.msm8974
+
+PRODUCT_PACKAGES += \
     libaudio-resampler \
+    libqcompostprocbundle \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
     tinymix
+
+# Audio configuration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
 
 # Display
 PRODUCT_PACKAGES += \
@@ -141,7 +152,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.buffer.size.kb=32 \
     audio.offload.gapless.enabled=false \
-    av.offload.enable=true
+    audio.offload.multiple.enabled=false \
+    audio.offload.pcm.enable=enable \
+    av.offload.enable=enable \
+    av.streaming.offload.enable=enable
 
 # Enable AAC 5.1 output
 PRODUCT_PROPERTY_OVERRIDES += \
