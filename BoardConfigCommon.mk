@@ -1,4 +1,4 @@
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2013 The MoKee OpenSource Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -77,7 +77,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # CM Hardware
-BOARD_HARDWARE_CLASS := device/sony/shinano-common/cmhw
+BOARD_HARDWARE_CLASS := device/sony/shinano-common/mkhw
 
 # Dumpstate
 BOARD_LIB_DUMPSTATE := libdumpstate.sony
