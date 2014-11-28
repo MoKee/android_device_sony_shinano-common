@@ -52,9 +52,8 @@ PRODUCT_PACKAGES += \
 
 # Sbin
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/charger:root/charger \
-    $(COMMON_PATH)/rootdir/sbin/wait4tad_static:root/sbin/wait4tad_static \
-    $(COMMON_PATH)/rootdir/sbin/tad_static:root/sbin/tad_static
+    $(COMMON_PATH)/rootdir/charger:root/healthd \
+    $(COMMON_PATH)/rootdir/sbin/tad_static:system/bin/tad_static
 
 # ANT+
 PRODUCT_PACKAGES += \
@@ -137,10 +136,6 @@ PRODUCT_PACKAGES += \
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# Wifi
-PRODUCT_PACKAGES += \
-    libnetcmdiface
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \

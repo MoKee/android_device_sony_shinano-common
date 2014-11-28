@@ -35,9 +35,6 @@ vendor/lib/libadsprpc.so
 
 # Bluetooth
 etc/firmware/BCM4339.hcd
-bin/btnvtool
-bin/hci_qcomm_init
-vendor/lib/libbtnv.so
 
 # Camera
 bin/mm-qcamera-daemon
@@ -370,7 +367,6 @@ lib/sysmon/sysmon_xo_therm.so
 
 # TA
 bin/taimport
-bin/ta_param_loader
 bin/ta_qmi_service
 lib/libMiscTaAccessor.so
 lib/libmiscta.so
@@ -379,9 +375,6 @@ lib/libta.so
 # Time
 bin/time_daemon
 -vendor/lib/libtime_genoff.so
-
-# Touchscreen
-bin/clearpad_fwloader
 
 # WiFi
 bin/radish
