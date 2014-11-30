@@ -1,4 +1,5 @@
 # Audio
+lib/hw/audio.primary.msm8974.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
@@ -8,7 +9,6 @@ vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
 
 # Audio BLOBS
-lib/libaudioroute.so
 vendor/etc/effect_init_params
 vendor/lib/liblistenhardware.so
 
@@ -367,6 +367,7 @@ lib/sysmon/sysmon_xo_therm.so
 
 # TA
 bin/taimport
+bin/ta_param_loader
 bin/ta_qmi_service
 lib/libMiscTaAccessor.so
 lib/libmiscta.so
@@ -375,6 +376,9 @@ lib/libta.so
 # Time
 bin/time_daemon
 -vendor/lib/libtime_genoff.so
+
+# Touchscreen
+bin/clearpad_fwloader
 
 # WiFi
 bin/radish
