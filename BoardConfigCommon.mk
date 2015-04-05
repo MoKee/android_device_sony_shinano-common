@@ -42,8 +42,8 @@ TARGET_RELEASE_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 BOARD_CAMERA_HAVE_ISO := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
-# CM Hardware
-BOARD_HARDWARE_CLASS += device/sony/shinano-common/cmhw
+# MK Hardware
+BOARD_HARDWARE_CLASS += device/sony/shinano-common/mkhw
 
 # Dumpstate
 BOARD_LIB_DUMPSTATE := libdumpstate.sony
