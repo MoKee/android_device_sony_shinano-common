@@ -1,2 +1,0 @@
-allow hal_lineage_touch_default sysfs_securetouch:dir search;
-allow hal_lineage_touch_default sysfs_securetouch:file rw_file_perms;

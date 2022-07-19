@@ -13,10 +13,10 @@
 // limitations under the License.
 
 cc_binary {
-    name: "vendor.lineage.touch@1.0-service.shinano",
+    name: "vendor.mokee.touch@1.0-service.shinano",
     defaults: ["hidl_defaults"],
-    vintf_fragments: ["vendor.lineage.touch@1.0-service.shinano.xml"],
-    init_rc: ["vendor.lineage.touch@1.0-service.shinano.rc"],
+    vintf_fragments: ["vendor.mokee.touch@1.0-service.shinano.xml"],
+    init_rc: ["vendor.mokee.touch@1.0-service.shinano.rc"],
     relative_install_path: "hw",
     vendor: true,
     srcs: [
@@ -27,6 +27,6 @@ cc_binary {
         "libbase",
         "libhidlbase",
         "libutils",
-        "vendor.lineage.touch@1.0",
+        "vendor.mokee.touch@1.0",
     ],
 }

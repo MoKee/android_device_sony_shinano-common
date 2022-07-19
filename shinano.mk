@@ -71,9 +71,9 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/keylayout/mhl-rcp.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/mhl-rcp.kl \
     $(COMMON_PATH)/configs/keylayout/msm8974-taiko-mtp-snd-card_Button_Jack.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/msm8974-taiko-mtp-snd-card_Button_Jack.kl
 
-# Lineage Hardware
+# MoKee Hardware
 PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.shinano
+    vendor.mokee.touch@1.0-service.shinano
 
 # MAC address - BT and Wi-Fi
 PRODUCT_PACKAGES += \
